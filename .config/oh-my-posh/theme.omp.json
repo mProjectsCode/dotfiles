@@ -1,0 +1,55 @@
+{
+    "$schema": "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json",
+    "blocks": [
+        {
+            "alignment": "left",
+            "segments": [
+                {
+                    "background": "#18354c",
+                    "foreground": "#ffc107",
+                    "powerline_symbol": "\ue0b0",
+                    "properties": {
+                        "style": "full"
+                    },
+                    "style": "diamond",
+                    "leading_diamond": "\ue0b6",
+                    "trailing_diamond": "\ue0b0",
+                    "template": " \ue5ff {{ .Path }} ",
+                    "type": "path"
+                },
+                {
+                    "background": "#18354c",
+                    "foreground": "#ffc107",
+                    "foreground_templates": [
+                        "{{ if or (.Working.Changed) (.Staging.Changed) }}#18354c{{ end }}",
+                        "{{ if or (gt .Ahead 0) (gt .Behind 0) }}#18354c{{ end }}"
+                    ],
+                    "background_templates": [
+                        "{{ if or (.Working.Changed) (.Staging.Changed) }}#ffc107{{ end }}",
+                        "{{ if or (gt .Ahead 0) (gt .Behind 0) }}#ffc107{{ end }}"
+                    ],
+                    "powerline_symbol": "\ue0b0",
+                    "properties": {
+                        "branch_max_length": 30,
+                        "fetch_status": true,
+                        "fetch_upstream_icon": true
+                    },
+                    "style": "powerline",
+                    "template": " {{ .UpstreamIcon }}{{ .HEAD }}{{if .BranchStatus }} {{ .BranchStatus }}{{ end }}{{ if .Working.Changed }} \uf044 {{ .Working.String }}{{ end }}{{ if and (.Working.Changed) (.Staging.Changed) }} |{{ end }}{{ if .Staging.Changed }} \uf046 {{ .Staging.String }}{{ end }} ",
+                    "type": "git"
+                },
+                {
+                    "background": "#ffc107",
+                    "foreground": "#18354c",
+                    "powerline_symbol": "\ue0b0",
+                    "style": "powerline",
+                    "template": " \uf0e7 ",
+                    "type": "root"
+                }
+            ],
+            "type": "prompt"
+        }
+    ],
+    "final_space": true,
+    "version": 2
+}
