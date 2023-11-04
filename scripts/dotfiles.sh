@@ -1,3 +1,6 @@
+#!/bin/bash
+
+# based on https://github.com/dbarenholz/dotfiles/blob/main/.config/zsh/dotfiles.zsh
 dotfiles() {
   # REQUIRED_TOOLS=(cp ln dirname realpath git)
   # for tool in ${REQUIRED_TOOLS[@]}
@@ -26,30 +29,30 @@ dotfiles() {
     return
   fi
 
-  task=$1
+  task="$1"
 
-  case $task in
+  case "$task" in
 
     "a" | "add")
-      for arg in $@
+      for arg in "$@"
       do
-        DIRS="$(dirname $(realpath --relative-to=$HOME $(pwd)/$arg))"
-        mkdir -p $DOTFILES/$DIRS
+        DIRS="$(dirname "$(realpath --relative-to "$HOME" "$(realpath "$arg")")")"
+        mkdir -p "$DOTFILES/$DIRS"
 
         if [[ -d "$arg" ]]
         then
-          cp -al $(pwd)/$arg $DOTFILES/$DIRS
+          cp -ial "$(realpath "$arg")" "$DOTFILES/$DIRS"
         else
-          ln -ivt $DOTFILES/$DIRS $arg
+          ln -ivt "$DOTFILES/$DIRS" "$arg"
         fi
       done
       ;;
 
     "u" | "update")
       echo "Pushing to git"
-      git -C $DOTFILES add .
-      git -C $DOTFILES commit -m "Update dotfiles"
-      git -C $DOTFILES push
+      git -C "$DOTFILES" add .
+      git -C "$DOTFILES" commit -m "Update dotfiles"
+      git -C "$DOTFILES" push
       ;;
    
     *)
@@ -58,6 +61,6 @@ dotfiles() {
 
   esac
 
-  unset $DOTFILES
-  unset $task
+  unset "$DOTFILES"
+  unset "$task"
 }
