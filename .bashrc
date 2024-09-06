@@ -116,11 +116,13 @@ if ! shopt -oq posix; then
     . /etc/bash_completion
   fi
 fi
-. "$HOME/.cargo/env"
 
 # -----------------------------
 # this is the start of my stuff
 # -----------------------------
+
+# rust
+. "$HOME/.cargo/env"
 
 # bun
 export BUN_INSTALL="$HOME/.bun"
@@ -135,3 +137,38 @@ source "$HOME/scripts/project.sh"
 source "$HOME/scripts/cmd.sh"
 source "$HOME/scripts/openWebstorm.sh"
 source "$HOME/scripts/dotfiles.sh"
+
+# custom alias
+alias obs="~/obsidian/obs_install.AppImage"
+alias rebash=". ~/.bashrc"
+alias nfetch="neofetch --ascii ~/dotfiles/neofetchAscii.txt"
+alias py="python3"
+
+# npm
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# ble
+# source ~/.local/share/blesh/ble.sh
+
+# browser open stuff
+export BROWSER='/mnt/c/Windows/explorer.exe'
+
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/home/lemon/anaconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/home/lemon/anaconda3/etc/profile.d/conda.sh" ]; then
+        . "/home/lemon/anaconda3/etc/profile.d/conda.sh"
+    else
+        export PATH="/home/lemon/anaconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
+
+export LIBVA_DRIVER_NAME=d3d12

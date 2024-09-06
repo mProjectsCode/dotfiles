@@ -7,6 +7,8 @@ function project() {
     echo "Examples"
     echo "       project list               list all projects"
     echo "       project metabind           switch to the meta bind project"
+    echo "       project parsinom           switch to the parsiNOM project"
+    echo "       project jsengine           switch to the js engine project"
     return 1
   fi
 
@@ -18,12 +20,27 @@ function project() {
 
     "list")
       echo "metabind"
+      echo "parsinom"
       return 0
       ;;
 
     "metabind")
       echo "switching to meta bind"
       cd "$HOME/src/obsidian-meta-bind-plugin"
+      openWebstorm .
+      return 0
+      ;;
+
+    "parsinom")
+      echo "switching to parsinom"
+      cd "$HOME/src/parsiNOM"
+      openWebstorm .
+      return 0
+      ;;
+
+    "jsengine")
+      echo "switching to js engine"
+      cd "$HOME/src/obsidian-js-engine-plugin"
       openWebstorm .
       return 0
       ;;

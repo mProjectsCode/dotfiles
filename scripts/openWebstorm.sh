@@ -2,8 +2,8 @@
 
 # from https://superuser.com/questions/305933/preventing-bash-from-displaying-done-when-a-background-command-finishes-execut
 silent_background() {
-  { 2>&3 "$@"& } 3>&2 2>/dev/null
-  disown &>/dev/null  # Close STD{OUT,ERR} for silence if job has already completed
+  ("$@" &) &> /dev/null
+  disown &> /dev/null  # Close STD{OUT,ERR} for silence if job has already completed
 }
 
 
